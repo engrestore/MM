@@ -1,0 +1,56 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 26,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "build",
+            "generator": "Ninja"
+        },
+        {
+            "name": "native",
+            "inherits": "build",
+            "binaryDir": "${sourceDir}/build/native",
+            "cacheVariables": {
+                "TARGET_DEVICE": "NATIVE"
+            }
+        },
+        {
+            "name": "arm32",
+            "inherits": "build",
+            "binaryDir": "${sourceDir}/build/arm32",
+            "toolchainFile": "cmake/arm-linux-gnueabihf.cmake",
+            "cacheVariables": {
+                "TARGET_DEVICE": "ARM_LINUX"
+            }
+        },
+        {
+            "name": "aarch64",
+            "inherits": "build",
+            "binaryDir": "${sourceDir}/build/aarch64",
+            "toolchainFile": "cmake/aarch64-none-linux-gnu.cmake",
+            "cacheVariables": {
+                "TARGET_DEVICE": "ARM_LINUX"
+            }
+        },
+        {
+            "name": "stm32f411",
+            "inherits": "build",
+            "binaryDir": "${sourceDir}/build/stm32f411",
+            "toolchainFile": "cmake/gcc-m4f.cmake",
+            "cacheVariables": {
+                "LINKER_SCRIPT": "${sourceDir}/mcu_support/stm32/f4xx/f411/STM32F411RETX_FLASH.ld",
+                "STARTUP_FILE": "${sourceDir}/mcu_support/stm32/f4xx/f411/startup_stm32f411retx.s",
+                "TARGET_DEVICE": "STM32F411",
+                "MCU_NAME": "STM32F411xE",
+                "FREERTOS_PORT": "GCC_ARM_CM4F",
+                "MCU_FAMILY": "STM32F4"
+            }
+        }
+        
+    
+    ]
+}

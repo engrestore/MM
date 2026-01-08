@@ -1,0 +1,6 @@
+if(NOT NATIVE)
+    add_subdirectory(CMSIS)
+endif()
+if (MCU_NAME MATCHES "^(STM32F411)")
+    add_subdirectory(stm32/f4xx)
+endif()
